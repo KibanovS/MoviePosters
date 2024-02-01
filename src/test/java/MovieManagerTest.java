@@ -39,25 +39,6 @@ public class MovieManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
-
-    @Test
-    public void lastAdded() {
-        MovieManager movie = new MovieManager();
-
-        movie.add(movie1);
-        movie.add(movie2);
-        movie.add(movie3);
-        movie.add(movie4);
-        movie.add(movie5);
-        movie.add(movie6);
-        movie.add(movie7);
-
-        Movie[] expected = {movie7, movie6, movie5, movie4, movie3};
-        Movie[] actual = movie.findLast();
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
     @Test
     public void shouldFindAllLimit3() {
         MovieManager movie = new MovieManager(3);
@@ -125,5 +106,51 @@ public class MovieManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void lastAdded() {
+        MovieManager movie = new MovieManager();
 
+        movie.add(movie1);
+        movie.add(movie2);
+        movie.add(movie3);
+        movie.add(movie4);
+        movie.add(movie5);
+        movie.add(movie6);
+        movie.add(movie7);
+
+        Movie[] expected = {movie7, movie6, movie5, movie4, movie3};
+        Movie[] actual = movie.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldLast5Movies5() {
+        MovieManager movie = new MovieManager();
+
+        movie.add(movie1);
+        movie.add(movie2);
+        movie.add(movie3);
+        movie.add(movie4);
+        movie.add(movie5);
+
+        Movie[] expected = {movie5, movie4, movie3, movie2, movie1};
+        Movie[] actual = movie.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldLast5Movies3(){
+        MovieManager movie = new MovieManager();
+
+        movie.add(movie1);
+        movie.add(movie2);
+        movie.add(movie3);
+
+
+        Movie[] expected = { movie3, movie2, movie1};
+        Movie[] actual = movie.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
