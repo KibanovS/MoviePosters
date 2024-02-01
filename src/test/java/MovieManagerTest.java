@@ -9,6 +9,7 @@ public class MovieManagerTest {
     private final Movie movie5 = new Movie(5, "Человек-невидимка", "ужасы");
     private final Movie movie6 = new Movie(6, "Тролли. Мировой тур", "мультфильм");
     private final Movie movie7 = new Movie(7, "Номер один", "комедия");
+    private final Movie movie8 = new Movie(7, "Номер один", "комедия");
 
     @Test
     public void shouldAddMovie() {
@@ -88,6 +89,38 @@ public class MovieManagerTest {
         movie.add(movie7);
 
         Movie[] expected = {movie1, movie2, movie3, movie4, movie5, movie6, movie7};
+        Movie[] actual = movie.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldFindAllOverLimit() {
+        MovieManager movie = new MovieManager();
+
+        movie.add(movie1);
+        movie.add(movie2);
+        movie.add(movie3);
+        movie.add(movie4);
+        movie.add(movie5);
+        movie.add(movie6);
+        movie.add(movie7);
+        movie.add(movie8);
+
+        Movie[] expected = {movie1, movie2, movie3, movie4, movie5};
+        Movie[] actual = movie.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldFindAllDownLimit() {
+        MovieManager movie = new MovieManager();
+
+        movie.add(movie1);
+        movie.add(movie2);
+        movie.add(movie3);
+
+
+        Movie[] expected = {movie1, movie2, movie3};
         Movie[] actual = movie.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
